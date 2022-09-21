@@ -1,4 +1,5 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
+const { Rank } = require('canvacord');
 
 const User = require('../Schemas/User.js');
 
@@ -23,8 +24,22 @@ module.exports = {
 
          let { xp, level } = user;
 
-         interaction.reply({
-            content: `<@${userId}>, your current rank is ${level} with ${xp}xp.`,
+         const neededAmount = (level) => level * level * 100;
+
+         const rank = new Rank()
+            .setAvatar(member.user.displayAvatarURL())
+            .setCurrentXP(xp)
+            .setRequiredXP(neededAmount(level))
+            .setStatus(member.presence.status)
+            .setProgressBar('#FFFFFF', 'COLOR')
+            .setUsername(member.user.username)
+            .setDiscriminator(member.user.discriminator);
+
+         rank.build().then((data) => {
+            const attachment = new AttachmentBuilder(data, {
+               name: 'rank.png',
+            });
+            interaction.reply({ files: [attachment] });
          });
       } catch (err) {
          console.log(err);
