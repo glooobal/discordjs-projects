@@ -1,4 +1,4 @@
-const User = require('../Schemas/User.js');
+const User = require('../../Modules/Database/Models/User.js');
 
 const cooldown = new Set();
 
@@ -31,10 +31,9 @@ module.exports = {
 
          let { xp, level } = user;
 
-         const neededAmount = (level) => level * level * 100;
-
-         if (xp >= neededAmount(level)) {
+         if (xp >= level * 100) {
             ++level;
+            xp = 0;
 
             message.reply(`🎉 <@${userId}>, you are now level ${level}!`);
 
