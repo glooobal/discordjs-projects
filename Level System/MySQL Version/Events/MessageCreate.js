@@ -1,3 +1,8 @@
+/**
+ * FIRST CREATE NEW TABLE IN YOUR DATABASE
+ * `CREATE TABLE users (guildId varchar(50), userId varchar(50), level int, xp int)`
+ */
+
 const cooldown = new Set();
 
 module.exports = {
