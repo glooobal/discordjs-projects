@@ -5,6 +5,7 @@
 -  [x] Rank command.
 -  [ ] Leaderboard command.
 -  [ ] Rank system.
+-  [ ] Rank command using canvas.
 
 ## 🙂 Known bugs
 
