@@ -1,4 +1,4 @@
-const User = require('../../Modules/Database/Models/User.js');
+const User = require('../Schemas/User.js');
 
 const cooldown = new Set();
 
